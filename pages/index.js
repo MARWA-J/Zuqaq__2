@@ -1,7 +1,5 @@
 import { Layout, Menu, Breadcrumb, Button } from "antd";
 
-
-
 import { BsList } from "react-icons/bs";
 const { Header, Footer, Sider, Content } = Layout;
 import {
@@ -19,7 +17,7 @@ import SlideNav from "../components/SlideNav";
 import SideWindow from "../pages/SideWindow.js";
 import NavBar from "../components/NavBar";
 import { useState } from "react";
-import FilterButtons from "../components/carousel.js"
+import FilterButtons from "../components/carousel.js";
 // const { Layout, Menu, Breadcrumb } = antd;
 // const { UserOutlined, LaptopOutlined, NotificationOutlined } = icons;
 
@@ -42,7 +40,6 @@ const index = () => {
 
       </div> */}
 
-      
       <div className="Main_container">
         <Filter />
         <SideWindow />
@@ -51,8 +48,7 @@ const index = () => {
         <Footer
           style={{
             width: "100%",
-            height: "12%",
-           
+            height: "10%",
             position: "fixed",
             bottom: 0,
             display: "flex",
@@ -61,8 +57,7 @@ const index = () => {
             backgroundColor: "#24292e",
             // #24292e
             zIndex: "9999",
-            
-            padding:"0 30px"
+            padding: "0 30px",
           }}
         >
           <div className="footer">
@@ -73,11 +68,32 @@ const index = () => {
                   marginBottom: "5px",
                   marginTop: "5px",
                   marginRight: "5px",
+                  fontSize: "28px",
                 }}
               />
-              <span>Home</span>
+              <span
+                style={{
+                  fontSize: "14px",
+                  height: "2%",
+                  lineHeight: "2.5",
+                  paddingLeft: "3px",
+                }}
+              >
+                Home
+              </span>
             </span>
-            <Button style={{backgroundColor:"#3b86ff",color:"white",border:"none"}}>checkout</Button>
+            <Button
+              style={{
+                backgroundColor: "#3b86ff",
+                color: "white",
+                border: "none",
+                height: "24px",
+                fontSize: "14px",
+                padding: " 2 25px",
+              }}
+            >
+              <p style={{ fontSize: "14px" }}> checkout</p>
+            </Button>
           </div>
         </Footer>
       </Layout>

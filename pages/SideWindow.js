@@ -36,55 +36,92 @@ function index() {
         <p>Items List </p> <BsThreeDots style={{ marginTop: "-10px" }} />
       </div>
       <div className="item_container">
-        <div className="window_item">
-          <img width="70px" height="50px" src="../static/images/t2.jpg" />
-          <div className="window_text">
-            <span>
-              Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
-            </span>
-            <div>45,000 IQD</div>
+        <div
+          style={{
+            width: "100%",
+            borderBottom: " 1px solid #e8ebed",
+            display: "flex",
+            height: "10%",
+            padding: "5%",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ flexGrow: 1 }}>
+            {" "}
+            <img width="50px" height="50px" src="../static/images/t9.jpg" />
           </div>
-
-          <div className="window_ctrl">
-            <span className="ai_window">
-              <AiOutlineMinus />
-            </span>
-            <div className="item_num">10</div>
-            <span className="ai_window">
-              <AiOutlinePlus />
-            </span>
+          <div style={{ flexGrow: 3 }}>
+            <div>
+              <span>
+                Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
+              </span>
+              <div>45,000 IQD</div>
+            </div>
+          </div>{" "}
+          <div style={{ flexGrow: 2 }}>
+            {" "}
+            <div className="window_ctrl" style={{ flex: "0 0 20%" }}>
+              <span className="ai_window">
+                <AiOutlineMinus />
+              </span>
+              <div className="item_num">20</div>
+              <span className="ai_window">
+                <AiOutlinePlus />
+              </span>
+            </div>
           </div>
-          <div>
+          <div style={{ flexGrow: 0 }}>
+            {" "}
             <GiDividedSpiral
               size="20"
-              style={{ marginLeft: "20px" }}
-              color="rgb(89, 161, 228)"
+              // style={{ marginLeft: "" }}
+              color="rgb(201, 194, 194)"
             />
           </div>
         </div>
-
-        <div className="window_item">
-          <img width="70px" height="50px"  src="../static/images/t3.jpg" />
-          <div className="window_text">
-            <span>
-              Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
-            </span>
-            <div>45,000 IQD</div>
+        <div
+          style={{
+            width: "100%",
+            borderBottom: " 1px solid #e8ebed",
+            display: "flex",
+            height: "10%",
+            padding: "5%",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ flexGrow: 1 }}>
+            {" "}
+            <img width="50px" height="50px" src="../static/images/m.jpg" />
           </div>
-
-          <div className="window_ctrl">
-            <span className="ai_window">
-              <AiOutlineMinus />
-            </span>
-            <div className="item_num">20</div>
-            <span className="ai_window">
-              <AiOutlinePlus />
-            </span>
+          <div style={{ flexGrow: 3 }}>
+            <div>
+              <span>
+                Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
+              </span>
+              <div>45,000 IQD</div>
+            </div>
+          </div>{" "}
+          <div style={{ flexGrow: 2.5 }}>
+            {" "}
+            <div className="window_ctrl">
+              <span className="ai_window">
+                <AiOutlineMinus />
+              </span>
+              <div className="item_num">20</div>
+              <span className="ai_window">
+                <AiOutlinePlus />
+              </span>
+            </div>
           </div>
-          <div>
+          <div
+            style={{
+              flexGrow: 0,
+            }}
+          >
+            {" "}
             <GiDividedSpiral
               size="20"
-              style={{ marginLeft: "20px" }}
+              // style={{ marginLeft: "" }}
               color="rgb(201, 194, 194)"
             />
           </div>
@@ -98,7 +135,7 @@ function index() {
             </Button>
           </Dropdown>
         </div>
- 
+
         <div className="check">
           <ul>
             <li>Sub-total:</li>
