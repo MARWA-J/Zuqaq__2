@@ -1,4 +1,4 @@
-import { Layout, Menu, Breadcrumb, Button } from "antd";
+import { Layout, Menu, Breadcrumb, Button, Row, Col } from "antd";
 
 import { BsList } from "react-icons/bs";
 const { Header, Footer, Sider, Content } = Layout;
@@ -41,8 +41,26 @@ const index = () => {
       </div> */}
 
       <div className="Main_container">
-        <Filter />
-        <SideWindow />
+        <Row style={{ display: "flex", flexFlow: "row", width: "100%" }}>
+          <Col
+            style={{
+              flex: "1 1 73%",
+
+              width: "50%",
+            }}
+          >
+            <Filter />
+          </Col>
+          <Col
+            style={{
+              flex: "1 0 27%",
+            }}
+          >
+            <SideWindow />
+          </Col>
+        </Row>
+        {/* <Filter />
+        <SideWindow /> */}
       </div>
       <Layout>
         <Footer
@@ -57,7 +75,7 @@ const index = () => {
             backgroundColor: "#24292e",
             // #24292e
             zIndex: "9999",
-            padding: "0 30px",
+            padding: "0 45px",
           }}
         >
           <div className="footer">
@@ -67,15 +85,15 @@ const index = () => {
                 style={{
                   marginBottom: "5px",
                   marginTop: "5px",
-                  marginRight: "5px",
-                  fontSize: "28px",
+                  marginRight: "22px",
+                  fontSize: "30px",
                 }}
               />
               <span
                 style={{
-                  fontSize: "14px",
-                  height: "2%",
-                  lineHeight: "2.5",
+                  fontSize: "16px",
+                  height: "2.5%",
+                  lineHeight: "2",
                   paddingLeft: "3px",
                 }}
               >

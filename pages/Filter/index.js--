@@ -1,17 +1,18 @@
 import { Button } from "antd";
 import antd from "antd";
-import { Layout, Breadcrumb } from "antd";
+import { Layout, Breadcrumb, Carousel } from "antd";
 import Slider from "react-slick";
+var ObjectFitCover = require("react-object-fit-cover");
 import { wrap } from "@popmotion/popcorn";
+const { Header, Footer, Sider, Content } = Layout;
 import { FaGreaterThan, FaLessThan } from "react-icons/fa";
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import "../../Styles/Filter.less";
 import { Example } from "./FilterBtn.js";
 import { RightOutlined, LeftOutlined } from "@ant-design/icons";
 import FilterButtons from "../../components/carousel";
 import { AnimatePresence, motion } from "framer-motion";
 
-const { Header, Footer, Sider, Content } = Layout;
 const { Card } = antd;
 const { Meta } = Card;
 const settings = {
@@ -29,8 +30,10 @@ const fitlerImtes = [
   { title: "Kids" },
   { title: "Dresses" },
   { title: "Skrits" },
+  { title: "Free Size" },
+  { title: "Hats" },
+  { title: "Bags" },
 ];
-
 const items = [
   {
     id: "1",
@@ -49,7 +52,7 @@ const items = [
   {
     id: "3",
     src: "../static/images/t3.png",
-    size: "XL",
+    size: "L",
     title: "Baghdad",
     color: "White",
   },
@@ -63,7 +66,7 @@ const items = [
   {
     id: "5",
     src: "../static/images/t5.png",
-    size: "XL",
+    size: "L",
     title: "Batman",
     color: "red",
   },
@@ -84,7 +87,7 @@ const items = [
   {
     id: "8",
     src: "../static/images/t8.png",
-    size: "XL",
+    size: "L",
     title: "Batman",
     color: "rded",
   },
@@ -98,83 +101,97 @@ const items = [
 ];
 
 export default function Filter() {
-  const [width, setWidth] = useState(0);
-  const [num, setNum] = useState(0);
+  const [currentItem, setCurrentItem] = useState(1);
+  const [itemperClick, setItemClick] = useState(5);
+  const [currentStep, setCurrentStep] = useState(1);
+  // const prevItem = () => {
+  //   if (currentItem > 1) {
+  //     setCurrentItem(currentItem - 1);
+  //   }
+  // };
 
-  const [pos, setpos] = useState(0);
-  const [count, setcount] = useState(0);
-  const [css, setCss] = useState({
-    transform: "translateX(0px)",
-  });
-  useEffect(() => {
-    let boxWidth = document.getElementById("btn").clientWidth;
-    setWidth(boxWidth);
-    console.log(boxWidth, "our width");
-  });
+  const totalItem = Math.ceil(fitlerImtes.length / itemperClick);
 
-  const handleClick = (type) => {
-    if (process.browser)
-      var margin = window.getComputedStyle(document.getElementById("btn"))
-        .marginRight;
-    let m = margin.slice(0, -2);
-    margin = parseInt(m);
-    console.log(margin, "fainlly");
-    const cardWidth = width;
-    const cardMargin = margin;
+  // const nextItem = () => {
+  //   if (currentItem != totalItem) {
+  //     setCurrentItem(currentItem + 1);
+  //   }
+  // };
+  let lastIndex = currentItem * itemperClick;
+  let firstIndex = lastIndex - itemperClick;
 
-    const cardNumber = 7;
-    let currentCard = num;
-    let position = pos;
-
-    if (type === "next" && count <= 2) {
-      console.log(currentCard, count, pos, "what");
-      currentCard = currentCard + 1;
-      setNum((num) => num + 1);
-
-      setcount((count) => count + 1);
-      position -= cardWidth + cardMargin;
-    } else if (type === "prev" && num > 0) {
-      setNum((num) => num - 1);
-      setcount((count) => count - 1);
-      position += cardWidth + cardMargin;
-    }
-
-    setCard(currentCard, position);
+  console.log(
+    "current",
+    +firstIndex + " * " + lastIndex
+    // itemperPage + " -" + lastIndex
+  );
+  const [xspot, setX] = useState(0);
+  const [goFor, setGofor] = useState(0);
+  const [Dragging, setDragging] = useState(false);
+  const nextOne = () => {
+    setX(xspot - 100);
+    console.log(xspot, "value of x");
+    let x = wrap(0, fitlerImtes.length, 11);
+    console.log(x, "warp");
   };
-
-  const setCard = (currentCard, position) => {
-    setNum(currentCard);
-    setpos(position);
-    setCss({
-      transform: `translateX(${position}px)`,
-    });
+  const getX = (x) => {
+    setGofor(x);
+    console.log(x, "x moving value");
   };
-
   return (
     <div className="filter_page">
       <div className="filter_head">
-        {count >= 1 ? (
-          <div className="fa_wrapper1" onClick={() => handleClick("prev")}>
-            <LeftOutlined
-              style={{ fontSize: "20px", color: "rgb(189, 186, 186)" }}
-            />
-          </div>
-        ) : null}
-
+        <div className="fa_wrapper1">
+          <LeftOutlined
+            style={{ fontSize: "20px", color: "rgb(189, 186, 186)" }}
+          />
+        </div>
         {fitlerImtes.map((item, i) => {
           return (
-            <Button
-              id="btn"
-              className="btns"
-              type={i === 0 ? "primary" : ""}
-              style={css}
+            <motion.div
+              drag="x"
+              animate={{ x: xspot }}
+              // onDrag={(event, info) => {
+              //   getX(event.x);
+              // }}
+
+              onChange={() => {
+                console.log("I am number", i);
+              }}
+              style={{
+                backgroundColor: "white",
+
+                cursor: "pointer",
+
+                // textAlign: "center",
+                // border: "1px solid #e8ebed",
+                // borderRadius: "6px",
+              }}
+              // onPan={z(event, info) => {
+              //   console.log(info.point.x, info.point.y);
+              //   getX(info.point.x / 2);
+              // }}
+              onDragStart={(event) => {
+                setDragging(true);
+              }}
+              // dragDirectionLock
+              onDragEnd={(event) => {
+                setDragging(false);
+              }}
+              // dragConstraints={{ left: -50, right: 50 }}
             >
-              {item.title}
-            </Button>
+              <Button
+                type={i === 0 ? "primary" : ""}
+                style={{ padding: "5px 45px" }}
+              >
+                {" "}
+                {item.title}
+              </Button>
+            </motion.div>
           );
         })}
 
-        <div className="fa_wrapper2" onClick={() => handleClick("next")}>
+        <div className="fa_wrapper2" onClick={nextOne}>
           <RightOutlined
             style={{ fontSize: "20px", color: "rgb(189, 186, 186)" }}
           />
@@ -221,7 +238,7 @@ export default function Filter() {
             <div style={{ height: "100%" }}>
               <div
                 style={{
-                  height: "160px",
+                  height: "12em",
                   maxWidth: "100%",
                   borderRadius: "10px 10px 0 0 ",
                 }}
@@ -246,9 +263,8 @@ export default function Filter() {
                     justifyContent: "space-between",
                   }}
                 >
-                  <p style={{ fontWeight: "400" }}> {item.color}</p>
-
-                  <span style={{ color: "#90baff" }}>{item.size}</span>
+                  {item.color}
+                  <span style={{ color: "blue" }}>{item.size}</span>
                 </div>
               </div>
             </div>
@@ -258,3 +274,34 @@ export default function Filter() {
     </div>
   );
 }
+const Slide = ({ content, background }) => {
+  return (
+    <motion.div
+      initial={{ x: -1000 }}
+      _dragX={true}
+      animate={{
+        zIndex: 1,
+        x: 0,
+      }}
+      drag="x"
+      exit={{
+        zIndex: 0,
+        x: 1000,
+      }}
+      transition={{
+        x: { type: "spring", stiffness: 600, damping: 200 },
+      }}
+      style={{
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        width: "30%",
+        alignItems: "center",
+        fontSize: 40,
+        background,
+      }}
+    >
+      {content}
+    </motion.div>
+  );
+};

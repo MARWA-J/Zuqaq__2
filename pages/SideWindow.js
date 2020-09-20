@@ -1,5 +1,5 @@
 import "../Styles/Filter.less";
-import { Layout, Breadcrumb } from "antd";
+import { Layout, Breadcrumb, Col } from "antd";
 
 const { Header, Footer, Sider, Content } = Layout;
 import { GiDividedSpiral } from "react-icons/gi";
@@ -24,85 +24,100 @@ const menu = (
 );
 function index() {
   return (
-    // <Layout>
-    //   <Sider
-    //     style={{
-    //       zIndex: 999,
-    //     }}
-    //   >
     <div className="window_page">
       <div className="window_title">
         {" "}
-        <p>Items List </p> <BsThreeDots style={{ marginTop: "-10px" }} />
+        <p>Items List </p>{" "}
+        <BsThreeDots
+          style={{ marginTop: "-10px", color: "rgb(201, 194, 194)" }}
+        />
       </div>
       <div className="item_container">
         <div
           style={{
             width: "100%",
             borderBottom: " 1px solid #e8ebed",
-            display: "flex",
-            height: "10%",
-            padding: "5%",
+            // display: "flex",
+            // height: "8%px",
+            display: "grid",
+            gap: "10px",
+            gridTemplateColumns: "auto 1fr 0.3fr auto",
+            padding: "10px 5%",
             alignItems: "center",
           }}
         >
-          <div style={{ flexGrow: 1 }}>
+          <div>
             {" "}
-            <img width="50px" height="50px" src="../static/images/t9.jpg" />
+            <img width="50px" height="50px" src="../static/images/t5.png" />
           </div>
-          <div style={{ flexGrow: 3 }}>
-            <div>
-              <span>
+          <div>
+            <div
+              style={{
+                fontSize: "1vw",
+
+                padding: "5px 0",
+              }}
+            >
+              <span style={{ fontWeight: 400 }}>
                 Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
               </span>
-              <div>45,000 IQD</div>
+              <div style={{ fontWeight: 400 }}>45,000 IQD</div>
             </div>
           </div>{" "}
-          <div style={{ flexGrow: 2 }}>
-            {" "}
-            <div className="window_ctrl" style={{ flex: "0 0 20%" }}>
+          <div>
+            <div className="window_ctrl">
               <span className="ai_window">
                 <AiOutlineMinus />
               </span>
-              <div className="item_num">20</div>
+              <div className="item_num">10</div>
               <span className="ai_window">
                 <AiOutlinePlus />
               </span>
             </div>
           </div>
-          <div style={{ flexGrow: 0 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              // paddingLeft: "10px",
+            }}
+          >
             {" "}
             <GiDividedSpiral
               size="20"
+              color="#4d91ff"
               // style={{ marginLeft: "" }}
-              color="rgb(201, 194, 194)"
+              // color="rgb(201, 194, 194)"
             />
           </div>
         </div>
+
         <div
           style={{
             width: "100%",
             borderBottom: " 1px solid #e8ebed",
-            display: "flex",
-            height: "10%",
-            padding: "5%",
+            // display: "flex",
+            // height: "75px",
+            display: "grid",
+            gap: "10px",
+            gridTemplateColumns: "auto 1fr 0.3fr auto",
+            padding: "10px 5%",
             alignItems: "center",
           }}
         >
-          <div style={{ flexGrow: 1 }}>
+          <div>
             {" "}
-            <img width="50px" height="50px" src="../static/images/m.jpg" />
+            <img width="50px" height="50px" src="../static/images/t1.png" />
           </div>
-          <div style={{ flexGrow: 3 }}>
-            <div>
-              <span>
+          <div>
+            <div style={{ fontSize: "1vw", padding: "5px 0" }}>
+              <span style={{ fontWeight: 400 }}>
                 Araq nas , white <span style={{ color: "#c5c7c9" }}>-FS </span>
               </span>
-              <div>45,000 IQD</div>
+              <div style={{ fontWeight: 400 }}>45,000 IQD</div>
             </div>
           </div>{" "}
-          <div style={{ flexGrow: 2.5 }}>
-            {" "}
+          <div>
             <div className="window_ctrl">
               <span className="ai_window">
                 <AiOutlineMinus />
@@ -115,12 +130,15 @@ function index() {
           </div>
           <div
             style={{
-              flexGrow: 0,
+              display: "flex",
+              alignItems: "center",
+              // paddingLeft: "10px",
             }}
           >
             {" "}
             <GiDividedSpiral
               size="20"
+              //color="#4d91ff"
               // style={{ marginLeft: "" }}
               color="rgb(201, 194, 194)"
             />
@@ -142,21 +160,19 @@ function index() {
             <li>Disocunt:</li>
             <li>Tax</li>
           </ul>
-          <ul>
+          <ul style={{ textAlign: "right" }}>
             <li>1.350,000 IQD</li>
             <li>000 IQD</li>
             <li>000 IQD</li>
           </ul>
         </div>
-        <div className="window_title">
+        <div className="window_title" style={{ marginTop: "1em" }}>
           {" "}
           <p>Total:</p>
           <p className="price">1,350,000 IQD</p>
         </div>
       </div>
     </div>
-    //   </Sider>
-    // </Layout>
   );
 }
 
